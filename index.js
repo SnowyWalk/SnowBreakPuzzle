@@ -402,6 +402,7 @@ function Solve(board, blocks, footprint, y = 0, x = 0)
 		return true
 	}
 
+	blocks = blocks.filter((e) => e.count > 0)
 	blocks.sort((a, b) => b.count - a.count)
 	if (checkbox_keep_block9.checked) // 9를 후순위로
 	{
@@ -409,33 +410,10 @@ function Solve(board, blocks, footprint, y = 0, x = 0)
 		blocks = blocks.filter(e => e.type != 9)
 		blocks = blocks.concat(block9)
 	}
-	blocks
-		.filter((e) => e.count > 0)
-		.forEach((block) =>
-		{
-			validArray = block.GetValidArray(board, y, x)
 
-			for (var i = 0; i < validArray.length; i++)
-			{
-				if (!validArray[i]) continue
-
-				var newBoard = _.cloneDeep(board)
-				var newBlocks = _.cloneDeep(blocks)
-				newBlocks.find((e) => e.type == block.type).Apply(newBoard, y, x, i)
-				newBlocks.find((e) => e.type == block.type).Use()
-				var newFootprint = _.cloneDeep(footprint)
-				newFootprint.push([y, x, block.type, i])
-
-				if (Solve(newBoard, newBlocks, newFootprint, nextPos[0], nextPos[1]))
-					return true
-			}
-		})
-
-	// For debug..
-	// var available_blocks = blocks.filter((e) => e.count > 0)
-	// for (var f = 0; f < available_blocks.length; ++f)
+	// 아래 코드는 forEach가 순서를 보장하지 않는 버그가 있는건지 이상하게 작동한다.
+	// blocks.forEach((block) =>
 	// {
-	// 	var block = available_blocks[f]
 	// 	validArray = block.GetValidArray(board, y, x)
 
 	// 	for (var i = 0; i < validArray.length; i++)
@@ -452,7 +430,29 @@ function Solve(board, blocks, footprint, y = 0, x = 0)
 	// 		if (Solve(newBoard, newBlocks, newFootprint, nextPos[0], nextPos[1]))
 	// 			return true
 	// 	}
-	// }
+	// })
+
+	var available_blocks = blocks.filter((e) => e.count > 0)
+	for (var f = 0; f < available_blocks.length; ++f)
+	{
+		var block = available_blocks[f]
+		validArray = block.GetValidArray(board, y, x)
+
+		for (var i = 0; i < validArray.length; i++)
+		{
+			if (!validArray[i]) continue
+
+			var newBoard = _.cloneDeep(board)
+			var newBlocks = _.cloneDeep(blocks)
+			newBlocks.find((e) => e.type == block.type).Apply(newBoard, y, x, i)
+			newBlocks.find((e) => e.type == block.type).Use()
+			var newFootprint = _.cloneDeep(footprint)
+			newFootprint.push([y, x, block.type, i])
+
+			if (Solve(newBoard, newBlocks, newFootprint, nextPos[0], nextPos[1]))
+				return true
+		}
+	}
 
 	if (nextPos[0] < board.length)
 		return Solve(board, blocks, footprint, nextPos[0], nextPos[1])
