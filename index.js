@@ -402,7 +402,6 @@ function Solve(board, blocks, footprint, y = 0, x = 0)
 		return true
 	}
 
-	blocks = blocks.filter((e) => e.count > 0)
 	blocks.sort((a, b) => b.count - a.count)
 	if (checkbox_keep_block9.checked) // 9를 후순위로
 	{
@@ -432,7 +431,7 @@ function Solve(board, blocks, footprint, y = 0, x = 0)
 	// 	}
 	// })
 
-	var available_blocks = blocks.filter((e) => e.count > 0)
+	var available_blocks = blocks.filter(e => e.count > 0)
 	for (var f = 0; f < available_blocks.length; ++f)
 	{
 		var block = available_blocks[f]
