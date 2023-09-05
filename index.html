@@ -1,0 +1,117 @@
+<html>
+
+<title>스노우브레이크 구조분석</title>
+
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+	<script src="index.js"></script>
+	<script src="index_utils.js"></script>
+	<link href="index.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<div id="content_container">
+		<div id="left_container">
+			<div id="canvas_size_container">
+				<div id="canvas_size_input_container">
+					<div id="canvas_size_width_container">
+						<label>넓이 : </label>
+						<input id="input_canvas_w" value=3 type="number" onClick="this.select();" />
+					</div>
+					<div id="canvas_size_height_container">
+						<label>높이 : </label>
+						<input id="input_canvas_h" value=2 type="number" onClick="this.select();" />
+					</div>
+				</div>
+			</div>
+
+			<div id="blocks_container">
+				<ul id="blocks_list">
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block1.png">
+							<input type="number" id="block_amount_1" onClick="this.select();" value=1 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block2.png">
+							<input type="number" id="block_amount_2" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block3.png">
+							<input type="number" id="block_amount_3" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block4.png">
+							<input type="number" id="block_amount_4" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block5.png">
+							<input type="number" id="block_amount_5" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block6.png">
+							<input type="number" id="block_amount_6" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block7.png">
+							<input type="number" id="block_amount_7" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block8.png">
+							<input type="number" id="block_amount_8" onClick="this.select();" value=0 />
+						</div>
+					</li>
+					<li>
+						<div class="block_amount_setter">
+							<img src="static/block9.png">
+							<input type="number" id="block_amount_9" onClick="this.select();" value=2 />
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div id="canvas_control_container">
+				<button id="button_run">계산하기</button>
+				<div>
+				<input type="checkbox" id="checkbox_keep_block9">
+				<label for="checkbox_keep_block9" checked>9번 블록을 최대한 아끼기</label>
+				</div>
+			</div>
+		</div>
+
+		<div id="right_container">
+			<div id="tile_container">
+				<div id="tile_background"> <!-- 배경 타일 -->
+
+				</div>
+				<div id="tile_block"> <!-- 정답 블록 -->
+
+				</div>
+			</div>
+			<div id="mouse_blocker"></div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
