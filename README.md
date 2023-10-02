@@ -1,6 +1,7 @@
 # SnowBreakPuzzle
 [스노우브레이크] 구조 분석 퍼즐을 풀어주는 사이트
 
+## 링크: https://snowywalk.github.io/SnowBreakPuzzle/
 
 
 # 사용법
