@@ -120,6 +120,8 @@ class Block
 				]
 			case 9:
 				return [[[true]]]
+			case 10:
+				return [[[true], [true]], [[true, true]]]
 		}
 
 		console.log("정보가 없는 블럭이 들어왔다.. type: " + this.type)
@@ -208,7 +210,8 @@ var g_block_instance_list = [
 	new Block(6, 0),
 	new Block(7, 0),
 	new Block(8, 0),
-	new Block(9, 0)
+	new Block(9, 0),
+	new Block(10, 0),
 ]
 
 window.onload = function ()
@@ -358,6 +361,7 @@ function GetSolution()
 		new Block(7, block_amount_7.value),
 		new Block(8, block_amount_8.value),
 		new Block(9, block_amount_9.value),
+		new Block(10, block_amount_10.value),
 	]
 	console.log(blocks)
 	var footprint = []
